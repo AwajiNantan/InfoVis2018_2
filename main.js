@@ -2,10 +2,6 @@ function main()
 {
     var width = 500;
     var height = 500;
-<<<<<<< HEAD
-=======
-    
->>>>>>> 3c724b57e4695698757bac5c46199ed5b437a7fc
     var scene = new THREE.Scene();
 
     var fov = 45;
