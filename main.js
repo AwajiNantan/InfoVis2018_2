@@ -42,7 +42,7 @@ function main2()
     var scene = new THREE.Scene();
 
     var light = new THREE.PointLight(0xffffff);
-    light.position.set(1,1,1);
+    light.position.set(0,0,4);
     scene.add(light);
 
     var fov = 45;
