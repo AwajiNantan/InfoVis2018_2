@@ -1,0 +1,10 @@
+<html>
+  <head>
+    <title>Example 08</title>
+  </head>
+  <body>
+    <input type="button"
+	   onclick="window.alert('Clicked!')"
+	   value="Calculate"/>
+  </body>
+</html>
