@@ -115,8 +115,9 @@ function main()
     function loop()
     {
         requestAnimationFrame( loop );
-        cube.rotation.x += 0.1;
+        cube.rotation.x += 0.01;
         cube.rotation.y += 0.001;
+        cube.rotation.z += 0.005;
         renderer.render( scene, camera );
     }
 }
