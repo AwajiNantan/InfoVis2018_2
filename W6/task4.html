@@ -33,6 +33,23 @@
      float n = 50.0;
      vec3 V = normalize(cameraPosition-point_position.xyz);
      vec3 H = (L+N)/abs(L+N);
+     float NdotH = max(dot(N,H),0.0);
+     float NdotV = max(dot(N,V),0.0);
+     float VdotH = max(dot(V,H),0.0);
+     float roughnessSquared = roughnessValue * raughnessValue;
+     float NH2 = 2.0*NdotH;
+     float g1 = (NH2 * NdotV)/VdotH;
+     float g2 = (NH2 * lambertFactor)/VdotH;	
+     float getAtt = min(1.0,min(g1,g2));
+     float r1 = 1.0/(4.0*roughnessSquared *pow(NdotH,4.0));
+     float r2 = (NdotH * NdotH -1.0)/(roughnessSquared*NdotH*NdotH);
+     float roughness = r1 *exp(r2);
+     float fresnel = pow(1.0-VdotH,5.0);
+     fresnel *=(1.0-fresnelReflectance);
+     fresnel += fresnelReflectance;
+     float factor = (fresnel* getAtt * roughness)/(NdotV * lambertFactor*IOR);
+    	
+	
      float dd = max( dot( N, L ), 0.0 );
      float ds = pow( max( dot( H, V ), 0.0 ), n );
      if ( dd <= 0.0 ) { ds = 0.0; }
