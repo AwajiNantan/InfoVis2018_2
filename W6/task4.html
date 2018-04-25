@@ -5,7 +5,7 @@
 <body>
 <script src="https://threejs.org/build/three.min.js"></script>
 	
-<script type="x-shader/x-vertex" id="cooktorrance.vert">
+<script type="x-shader/x-vertex" id="blinnphong.vert">
     varying vec3 point_color;
     varying vec4 point_position;
     varying vec3 normal_vector;
@@ -19,7 +19,7 @@
     }
 </script>
 	
-<script type="x-shader/x-fragment" id="cooktorrance.frag">
+<script type="x-shader/x-fragment" id="blinnphong.frag">
         varying vec3 point_color;
         varying vec3 normal_vector;
         varying vec4 point_position;
@@ -51,7 +51,7 @@
         gl_FragColor = vec4( shaded_color, 1.0 );
     }
 </script>
-<script src="maintask3.js"></script>
+<script src="maintask4.js"></script>
 <script>
  main();
 </script>
