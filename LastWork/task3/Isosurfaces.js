@@ -1,8 +1,16 @@
 function Isosurfaces( volume, isovalue )
 {
     var geometry = new THREE.Geometry();
-    var material = new THREE.MeshLambertMaterial();
-
+  //  var material = new THREE.MeshLambertMaterial();
+    if (shaderchoosen=='lambert'){
+	var material = new THREE.MeshLambertMaterial();
+	}else if(shaderchoosen=='phong'){
+    var material = new THREE.MeshPhongMaterial();
+	}else if(shaderchoosen=='basic'){
+    var material = new THREE.MeshBasicMaterial();
+	}else if(shaderchoosen=='normal'){
+    var material = new THREE.MeshNormalMaterial();
+	}
     var smin = volume.min_value;
     var smax = volume.max_value;
     isovalue = KVS.Clamp( isovalue, smin, smax );
@@ -10,6 +18,7 @@ function Isosurfaces( volume, isovalue )
     var lut = new KVS.MarchingCubesTable();
     var cell_index = 0;
     var counter = 0;
+
     for ( var z = 0; z < volume.resolution.z - 1; z++ )
     {
         for ( var y = 0; y < volume.resolution.y - 1; y++ )
@@ -64,11 +73,16 @@ function Isosurfaces( volume, isovalue )
     }
 
     geometry.computeVertexNormals();
+    //var color;
 
+	
+	
 
     var cmap = [];
+	if(isocolor =='rainbow'){ 
     for ( var i = 0; i < 256; i++ )
     {
+		console.log('rainbow');
         var S = i / 255.0; // [0,1]
         var R = Math.max( Math.cos( ( S - 1.0 ) * Math.PI ), 0.0 );
         var G = Math.max( Math.cos( ( S - 0.5 ) * Math.PI ), 0.0 );
@@ -76,6 +90,29 @@ function Isosurfaces( volume, isovalue )
         var color = new THREE.Color( R, G, B );
         cmap.push( [ S, '0x' + color.getHexString() ] );
     }
+	}else if(isocolor=='red'){
+	for ( var i = 0; i < 256; i++ )
+    {
+		console.log('red');
+	    var S = i / 255.0; // [0,1]
+        var R = 1;
+        var G = 1-S;
+        var B = 1-S;
+        var color = new THREE.Color( R, G, B );
+        cmap.push( [ S, '0x' + color.getHexString() ] );
+	}
+	}else{
+    for ( var i = 0; i < 256; i++ )
+    {
+		console.log('gray');
+	    var S = i / 255.0; // [0,1]
+        var R = 1-S;
+        var G = 1-S;
+        var B = 1-S;
+        var color = new THREE.Color( R, G, B );
+        cmap.push( [ S, '0x' + color.getHexString() ] );
+	}
+	}
 
 
     var color = new THREE.Color().setHex( cmap[ isovalue ][1] );
