@@ -15,7 +15,7 @@
 	shaderchoosen='lambert';
 	isovalue=128;
 	var colormap = function() {
-    this.message = 'rainbow';
+    this.colors = 'rainbow';
 };
 
 	var shadetool = function() {
@@ -26,7 +26,7 @@
 window.onload = function() {
   colormap1 = new colormap();
   gui = new dat.GUI();
-  gui.add(colormap1, 'message', [ 'rainbow', 'gray', 'red' ] ).onChange(function(){isocolor=colormap1.message;  screen.scene.remove(surfaces);  surfaces = Isosurfaces( volume, isovalue );
+  gui.add(colormap1, 'colors', [ 'rainbow', 'gray', 'red' ] ).onChange(function(){isocolor=colormap1.colors;  screen.scene.remove(surfaces);  surfaces = Isosurfaces( volume, isovalue );
     screen.scene.add( surfaces );});
   shadetool1 = new shadetool();
   gui.add(shadetool1,'shadename',['basic','lambert','phong']).onChange(function(){shaderchoosen=shadetool1.shadename;  screen.scene.remove(surfaces);  surfaces = Isosurfaces( volume, isovalue );
