@@ -13,12 +13,14 @@
    	<script type="text/javascript">
 	isocolor = 'rainbow';
 	shaderchoosen='lambert';
+	isovalue=128;
 	var colormap = function() {
     this.message = 'rainbow';
 };
 
 	var shadetool = function() {
     this.shadename	= 'lambert';
+	this.isovalues=128;
 };
 
 window.onload = function() {
@@ -27,8 +29,9 @@ window.onload = function() {
   gui.add(colormap1, 'message', [ 'rainbow', 'gray', 'red' ] ).onChange(function(){isocolor=colormap1.message;  screen.scene.remove(surfaces);  surfaces = Isosurfaces( volume, isovalue );
     screen.scene.add( surfaces );});
   shadetool1 = new shadetool();
-  gui.add(shadetool1,'shadename',['basic',,'normal','lambert','phong']).onChange(function(){shaderchoosen=shadetool1.shadename;  screen.scene.remove(surfaces);  surfaces = Isosurfaces( volume, isovalue );
+  gui.add(shadetool1,'shadename',['basic','lambert','phong']).onChange(function(){shaderchoosen=shadetool1.shadename;  screen.scene.remove(surfaces);  surfaces = Isosurfaces( volume, isovalue );
     screen.scene.add( surfaces );});
+  gui.add(shadetool1, 'isovalues', 1, 255).onChange(function(){isovalue=shadetool1.isovalues;  screen.scene.remove(surfaces);  surfaces = Isosurfaces( volume, isovalue ); screen.scene.add( surfaces );});
 }
 
 </script>
