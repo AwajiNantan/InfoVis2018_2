@@ -82,7 +82,6 @@ function Isosurfaces( volume, isovalue )
 	if(isocolor =='rainbow'){ 
     for ( var i = 0; i < 256; i++ )
     {
-		console.log('rainbow');
         var S = i / 255.0; // [0,1]
         var R = Math.max( Math.cos( ( S - 1.0 ) * Math.PI ), 0.0 );
         var G = Math.max( Math.cos( ( S - 0.5 ) * Math.PI ), 0.0 );
